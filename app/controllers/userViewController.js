@@ -77,9 +77,12 @@ angular
       };
 
       $scope.deleteUser = function (id) {
-        UserService.deleteUser(id).then(function () {
-          $rootScope.$broadcast("tableUpdated");
+        UserService.deleteUser(id).then(function (success) {
           ngDialog.close();
+          $rootScope.$broadcast("tableUpdated");
+          $rootScope.$broadcast("updateSuccessfullyMessage", {
+            successfullyMessage: success.message,
+          });
         });
       };
 

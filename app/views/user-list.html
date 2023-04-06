@@ -7,7 +7,7 @@
     {{successfullyMessageValue}}
   </div>
   
-  <div class="container--table--user">
+  <div class="container--table--user" ng-if="userList.length">
     <table class="table--user">
       <thead>
         <tr>
@@ -28,5 +28,12 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="container--empty" ng-if="!userList.length">
+    <img class="container--empty-img" src="https://cdn2.iconfinder.com/data/icons/delivery-and-logistic/64/Not_found_the_recipient-no_found-person-user-search-searching-4-512.png">
+    <span>
+      Users not found
+    </span>
   </div>
 </section>

@@ -76,7 +76,10 @@ angular.module("myApp").factory("UserService", function ($http) {
     if (index >= 0) {
       users.splice(index, 1);
       localStorage.setItem("userList", JSON.stringify(users));
-      return Promise.resolve();
+      return Promise.resolve({
+        status: 200,
+        message: "User successfully deleted",
+      });
     }
     return Promise.reject(new Error("User deletion failed with an error."));
   }
