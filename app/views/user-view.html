@@ -3,7 +3,7 @@
 </div>
 
 <div class="form-container">
-  <form name="userForm" novalidate>
+  <form name="userForm" novalidate form-validation user-form="userForm" errors="errors" is-form-valid="isFormValid">
     <div class="user-form-group">
       <label for="username">Username*</label>
       <input
@@ -13,12 +13,8 @@
         ng-model="user.username"
         required
       />
-      <div
-        ng-show="userForm.username.$invalid && userForm.username.$touched"
-        class="alert alert-danger"
-      >
-        Username is required
-      </div>
+
+      <div ng-show="errors.username" class="alert">{{ errors.username }}</div>
     </div>
     <div class="user-form-group">
       <label for="firstName">First Name*</label>
@@ -29,12 +25,7 @@
         ng-model="user.first_name"
         required
       />
-      <div
-        ng-show="userForm.firstName.$invalid && userForm.firstName.$touched"
-        class="alert alert-danger"
-      >
-        First Name is required
-      </div>
+      <div ng-show="errors.firstName" class="alert">{{errors.firstName}}</div>
     </div>
     <div class="user-form-group">
       <label for="lastName">Last Name*</label>
@@ -45,12 +36,7 @@
         ng-model="user.last_name"
         required
       />
-      <div
-        ng-show="userForm.lastName.$invalid && userForm.lastName.$touched"
-        class="alert alert-danger"
-      >
-        Last Name is required
-      </div>
+      <div ng-show="errors.lastName" class="alert">{{errors.lastName}}</div>
     </div>
     <div class="user-form-group">
       <label for="email">Email*</label>
@@ -61,12 +47,7 @@
         ng-model="user.email"
         required
       />
-      <div
-        ng-show="userForm.email.$invalid && userForm.email.$touched"
-        class="alert alert-danger"
-      >
-        Email is required and should be a valid email address.
-      </div>
+      <div ng-show="errors.email && userForm.email.$touched" class="alert">{{errors.email}}</div>
     </div>
     <div class="user-form-group">
       <label for="userType">User Type*</label>
@@ -77,15 +58,9 @@
         required
       >
         <option value="">Select user type</option>
-        <option value="Admin">Admin</option>
-        <option value="Driver">Driver</option>
+        <option ng-repeat="type in userTypes" value="{{type}}">{{type}}</option>
       </select>
-      <div
-        ng-show="userForm.userType.$invalid && !userForm.userType.$pristine"
-        class="alert alert-danger"
-      >
-        User Type is required
-      </div>
+      <div ng-show="errors.userType" class="alert">{{errors.userType}}</div>
     </div>
     <div class="user-form-group">
       <label for="password">Password*</label>
@@ -97,13 +72,7 @@
         ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/"
         required
       />
-      <div
-        ng-show="userForm.password.$invalid && userForm.password.$touched"
-        class="alert"
-      >
-        Password is required and should be at least 8 characters long with at
-        least one number and one letter.
-      </div>
+      <div ng-show="errors.password && userForm.email.$touched" class="alert">{{errors.password}}</div>
     </div>
     <div class="user-form-group">
       <label for="repeatPassword">Repeat password*:</label>
@@ -114,18 +83,7 @@
         ng-model="repeatedPassword"
         required
       />
-      <div
-        class="alert"
-        ng-show="userForm.repeatPassword.$error.required && userForm.repeatPassword.$touched"
-      >
-        Repeat password is required.
-      </div>
-      <div
-        class="alert"
-        ng-show="(repeatedPassword) && user.password !== repeatedPassword && !userForm.repeatPassword.$pristine"
-      >
-        Passwords must match.
-      </div>
+      <div ng-show="errors.repeatPassword && userForm.repeatPassword.$touched" class="alert">{{errors.repeatPassword}}</div>
     </div>
     <div
       class="user-form-group user-form-buttons"
@@ -143,7 +101,7 @@
         type="button"
         class="default-btn blue-btn"
         ng-click="saveUser(user)"
-        ng-disabled="userForm.$invalid && user.password !== repeatedPassword"
+        ng-disabled="!isFormValid"
       >
         {{userSaveButtonTitle}}
       </button>

@@ -1,113 +1,92 @@
-angular.module("myApp").directive('formValidation', function() {
+angular.module("myApp").directive("formValidation", function ($timeout) {
   return {
-    restrict: 'A',
-    require: '^form',
-    link: function(scope, element, attrs, formCtrl) {
-      // var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      // formCtrl.email.$validators.email = function(modelValue, viewValue) {
-      //   var test = emailRegex.test(viewValue);
-      //   debugger;
-      //   return emailRegex.test(viewValue);
-      // };
-
-      var usernameRegex = /^[a-zA-Z0-9]+$/;
-      var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-      // var emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-      var emailRegex = /^[a-zA-Z0-9]+$/;
-      var userTypeRegex = /^(Admin|Driver)$/;
-      
-      var validateUsername = function(value) {
-        if (!value) {
-          formCtrl.username.$setValidity('required', false);
-        } else if (!usernameRegex.test(value)) {
-          formCtrl.username.$setValidity('username', false);
-        }
-        // } else {
-        //   scope.getExistingUsernames(value).then(function(response) {
-        //     if (response.data.usernameExists) {
-        //       formCtrl.username.$setValidity('username', false);
-        //     } else {
-        //       formCtrl.username.$setValidity('username', true);
-        //     }
-        //   });
-        // }
-      };
-      
-      var validateFirstName = function(value) {
-        if (!value) {
-          formCtrl.first_name.$setValidity('required', false);
-        } else {
-          formCtrl.first_name.$setValidity('required', true);
-        }
-      };
-      
-      var validateLastName = function(value) {
-        if (!value) {
-          formCtrl.last_name.$setValidity('required', false);
-        } else {
-          formCtrl.last_name.$setValidity('required', true);
-        }
-      };
-      
-      var validateEmail = function(value, ngModelCtrl) {
+    restrict: "A",
+    scope: {
+      errors: "=",
+      isFormValid: "=",
+      userForm: "="
+    },
+    link: function (scope, element, attrs) {
+      var form = element[0];
+      form.addEventListener("input", function (event) {
         $timeout(function() {
-          var emailNgModelCtrl = emailInput.controller('ngModel');
-
-          if (!value) {
-            emailNgModelCtrl.$setValidity('required', false);
-          } else if (!emailRegex.test(value)) {
-            emailNgModelCtrl.$setValidity('email', false);
-          } else {
-            emailNgModelCtrl.$setValidity('email', true);
+          scope.errors = {};
+          scope.isFormValid = true;
+  
+          //Validate required fields
+          if (!scope.userForm.username.$viewValue) {
+            scope.errors.username = "Username is required";
+            scope.isFormValid = false;
           }
-        });
-        // if (!value) {
-        //   ngModelCtrl.$setValidity('required', false);
-        // } else if (!emailRegex.test(value)) {
-        //   ngModelCtrl.$setValidity('email', false);
-        // } else {
-        //   ngModelCtrl.$setValidity('email', true);
-        // }
-      };
-      
-      var validatePassword = function(value) {
-        if (!value) {
-          formCtrl.password.$setValidity('required', false);
-        } else if (!passwordRegex.test(value)) {
-          formCtrl.password.$setValidity('password', false);
-        } else {
-          formCtrl.password.$setValidity('password', true);
-        }
-      };
-      
-      var validateUserType = function(value) {
-        if (!value) {
-          formCtrl.user_type.$setValidity('required', false);
-        } else if (!userTypeRegex.test(value)) {
-          formCtrl.user_type.$setValidity('user_type', false);
-        } else {
-          formCtrl.user_type.$setValidity('user_type', true);
-        }
-      };
-      
-      var emailInput = element.find('input[name="email"]');
-      // var emailNgModelCtrl = emailInput.controller('ngModel');
-
-      var validateAllFields = function() {
-        validateUsername(scope.user.username);
-        validateFirstName(scope.user.first_name);
-        validateLastName(scope.user.last_name);
-        // validateEmail(scope.user.email);
-        validateEmail(emailNgModelCtrl.$viewValue, emailNgModelCtrl);
-        validatePassword(scope.user.password);
-        validateUserType(scope.user.user_type);
-      };
-
-      
-      scope.$watchGroup(['user.username', 'user.first_name', 'user.last_name', 'user.email', 'user.password', 'user.user_type'], function(newValues, oldValues, scope) {
-        validateAllFields();
+          if (!scope.userForm.firstName.$viewValue) {
+            scope.errors.firstName = "First name is required";
+            scope.isFormValid = false;
+          }
+          if (!scope.userForm.lastName.$viewValue) {
+            scope.errors.lastName = "Last name is required";
+            scope.isFormValid = false;
+          }
+          if (!scope.userForm.email.$viewValue) {
+            scope.errors.email = "Email is required";
+            scope.isFormValid = false;
+          }
+          if (!scope.userForm.password.$viewValue) {
+            scope.errors.password = "Password is required";
+            scope.isFormValid = false;
+          }
+          if (!scope.userForm.repeatPassword.$viewValue) {
+            scope.errors.repeatPassword = "Repeat password is required";
+            scope.isFormValid = false;
+          }
+          
+          if (!scope.userForm.userType.$viewValue) {
+            scope.errors.userType = "User type is required";
+            scope.isFormValid = false;
+          }
+          //Validate email format
+          if (
+            scope.userForm.email.$viewValue &&
+            !validateEmail(scope.userForm.email.$viewValue)
+          ) {
+            scope.errors.email = "Invalid email format";
+            scope.isFormValid = false;
+          }
+          if (
+            scope.userForm.repeatPassword.$viewValue &&
+            !validateRepeatedPassword(
+              scope.userForm.password.$viewValue,
+              scope.userForm.repeatPassword.$viewValue
+            )
+          ) {
+            scope.errors.repeatPassword = "Passwords must match";
+            scope.isFormValid = false;
+          }
+  
+          //Validate password format
+          if (
+            scope.userForm.password.$viewValue &&
+            !validatePassword(scope.userForm.password.$viewValue)
+          ) {
+            scope.errors.password =
+              "Password must be at least 8 characters and contain at least one letter and one number";
+            scope.isFormValid = false;
+          }
+  
+          function validateEmail(email) {
+            var emailPattern = /^\S+@\S+\.\S+$/;
+            return emailPattern.test(email);
+          }
+  
+          function validatePassword(password) {
+            var passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+            return passwordPattern.test(password);
+          }
+  
+          function validateRepeatedPassword(password, repeatPassword) {
+            return password == repeatPassword;
+          }
+        })
       });
-    }
+    },
   };
 });
