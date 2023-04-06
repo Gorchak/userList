@@ -2,7 +2,6 @@ angular.module('myApp')
 .controller('UserListController', ['$scope', 'ngDialog', 'UserService', '$location', '$timeout', function($scope, ngDialog, UserService, $location, $timeout) {
   
   $scope.isDisplaySuccessfullyMessage = false;
-  $scope.successfullyMessageValue;
 
   $scope.getUsersAndUpdateList = function() {
     UserService.getUsers().then(function(data) {
