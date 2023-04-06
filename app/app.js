@@ -2,7 +2,7 @@ angular.module('myApp', ['ngRoute', 'ngDialog', 'LocalStorageModule'])
 .config(function($routeProvider) {
   $routeProvider
   .when('/', {
-    templateUrl: 'app/views/userList.html',
+    templateUrl: 'app/views/user-list.html',
     controller: 'UserListController'
   })
   .when('/error', {

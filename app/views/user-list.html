@@ -1,0 +1,32 @@
+<section class="container--user-list">
+  <div class="container--add-user-button">
+    <button type="button" class="default-btn blue-btn" ng-click="openUserFormDialog()">Create user</button>
+  </div>
+
+  <div class="success-message" ng-if="isSuccessfullyMessage">
+    {{successfullyMessageValue}}
+  </div>
+  
+  <div class="container--table--user">
+    <table class="table--user">
+      <thead>
+        <tr>
+          <th class="table__header-cell">Username</th>
+          <th class="table__header-cell">First Name</th>
+          <th class="table__header-cell">Last Name</th>
+          <th class="table__header-cell">Email</th>
+          <th class="table__header-cell">User Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="item--user" ng-repeat="user in userList" ng-click="openUserFormDialog(user.id)">
+          <td class="table__cell">{{ user.username }}</td>
+          <td class="table__cell">{{ user.first_name }}</td>
+          <td class="table__cell">{{ user.last_name }}</td>
+          <td class="table__cell">{{ user.email }}</td>
+          <td class="table__cell">{{ user.user_type }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

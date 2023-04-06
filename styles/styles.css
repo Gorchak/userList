@@ -1,28 +1,27 @@
-
 .success-message {
-  background: #66BB6A;
+  background: #66bb6a;
   color: white;
   border-radius: 4px;
   padding: 22px 26px;
   margin-top: 10px;
 }
 
-.main-content {
+.content--main {
   width: 1200px;
   margin: 0 auto;
 }
 
-.user-list-container {
+.container--user-list {
   margin: 5vh 0 5vh;
 }
 
-.add-user-btn-container {
+.container--add-user-button {
   width: 100%;
   display: flex;
   justify-content: flex-end;
 }
 
-.user-table-container {
+.container--table--user {
   margin-top: 15px;
   -webkit-box-shadow: 0px 0px 7px 4px rgba(234, 236, 243, 0.67);
   -moz-box-shadow: 0px 0px 7px 4px rgba(234, 236, 243, 0.67);
@@ -31,30 +30,30 @@
   border-radius: 4px;
 }
 
-.user-table {
+.table--user {
   width: 100%;
 }
 
-.user-table thead th {
+.table__header-cell {
   padding: 17px 17px 12px;
   color: #a4a4b5;
 }
 
-.user-table tbody td {
+.table__cell {
   padding: 15px 17px;
   background-color: #f4f5f8;
   border-bottom: 2px solid white;
 }
 
-.user-table tbody tr:last-child td {
+.table--user tbody tr:last-child td {
   border-bottom: none;
 }
 
-.user-item {
+.item--user {
   cursor: pointer;
 }
 
-.user-item:hover td {
+.item--user:hover td {
   background-color: #eff0f4;
 }
 
@@ -75,23 +74,23 @@ User view  --start
   top: 13px;
 }
 
-.user-view-header {
+.header--user-view {
   font-weight: bold;
   margin-bottom: 15px;
   font-size: 16px;
 }
 
-.user-form-group {
+.form-group--user {
   margin-bottom: 16px;
 }
 
-.user-form-group label {
+.form-group--user label {
   font-size: 13px;
   color: #3f4254;
   margin-bottom: 0;
 }
 
-.user-form-group input {
+.form-group--user input {
   font-size: 13px;
   color: #3f4254;
   margin-bottom: 0;
@@ -101,17 +100,17 @@ User view  --start
   box-shadow: none;
 }
 
-.user-form-group select {
-    font-size: 13px;
-    color: #3f4254;
-    margin-bottom: 0;
-    background-color: #f3f6f9;
-    border: none;
-    border-radius: 4px;
-    box-shadow: none;
-  }
+.form-group--user select {
+  font-size: 13px;
+  color: #3f4254;
+  margin-bottom: 0;
+  background-color: #f3f6f9;
+  border: none;
+  border-radius: 4px;
+  box-shadow: none;
+}
 
-.user-form-group input:focus {
+.form-group--user input:focus {
   outline: 0;
   box-shadow: none;
 }
@@ -140,7 +139,6 @@ User view  --start
 /*
 User view  --end
 */
-
 
 /*
   Buttons  --start
@@ -182,8 +180,6 @@ User view  --end
   Buttons  --end
 */
 
-
-
 /*
   Error page  --start
 */
@@ -196,15 +192,14 @@ User view  --end
   margin: 5vh 0;
 }
 
-.error-page-status{
+.error-page-status {
   font-size: 80px;
   font-weight: bold;
-
 }
 
-.error-page-message{
+.error-page-message {
   font-size: 13px;
-  background-color: #EF7DA0;
+  background-color: #ef7da0;
   color: white;
   border-radius: 4px;
   padding: 22px 26px;
