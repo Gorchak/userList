@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8" />
+    <title>My App</title>
+    <link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog.min.css" />
+    <link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog-theme-default.css" />
+    <link rel="stylesheet" href="styles/styles.css" />
+  </head>
+  <body>
+    <div class="main-content">
+      <ng-view></ng-view>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-route.min.js"></script>
+    <script src="node_modules/angular-local-storage/src/angular-local-storage.js"></script>
+
+    <script src="app/app.js"></script>
+    <script src="app/services/userService.js"></script>
+    <script src="app/controllers/userListController.js"></script>
+    <script src="app/controllers/userViewController.js"></script>
+    <script src="app/controllers/errorController.js"></script>
+    <script src="app/directives/userFormValidation.js"></script>
+
+
+    <script src="node_modules/ng-dialog/js/ngDialog.js"></script>
+  </body>
+</html>

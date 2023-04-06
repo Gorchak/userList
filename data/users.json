@@ -1,0 +1,94 @@
+[
+    {
+      "username": "johndoe123",
+      "first_name": "John",
+      "last_name": "Doe",
+      "email": "johndoe@example.com",
+      "password": "password1",
+      "user_type": "Admin",
+      "id": 1
+    },
+    {
+      "username": "janedoe456",
+      "first_name": "Jane",
+      "last_name": "Doe",
+      "email": "janedoe@example.com",
+      "password": "password2",
+      "user_type": "Driver",
+      "id": 2
+    },
+    {
+      "username": "billythekid789",
+      "first_name": "Billy",
+      "last_name": "The Kid",
+      "email": "billythekid@example.com",
+      "password": "password3",
+      "user_type": "Admin",
+      "id": 3
+    },
+    {
+      "username": "sallysmith101",
+      "first_name": "Sally",
+      "last_name": "Smith",
+      "email": "sallysmith@example.com",
+      "password": "password4",
+      "user_type": "Driver",
+      "id": 4
+    },
+    {
+      "username": "bobjohnson234",
+      "first_name": "Bob",
+      "last_name": "Johnson",
+      "email": "bobjohnson@example.com",
+      "password": "password5",
+      "user_type": "Admin",
+      "id": 5
+    },
+    {
+      "username": "larryjones567",
+      "first_name": "Larry",
+      "last_name": "Jones",
+      "email": "larryjones@example.com",
+      "password": "password6",
+      "user_type": "Driver",
+      "id": 6
+    },
+    {
+      "username": "jimmybrown890",
+      "first_name": "Jimmy",
+      "last_name": "Brown",
+      "email": "jimmybrown@example.com",
+      "password": "password7",
+      "user_type": "Admin",
+      "id": 7
+    },
+    {
+      "username": "amandaharris123",
+      "first_name": "Amanda",
+      "last_name": "Harris",
+      "email": "amandaharris@example.com",
+      "password": "password8",
+      "user_type": "Driver",
+      "id": 8
+    },
+    {
+      "username": "joebloggs456",
+      "first_name": "Joe",
+      "last_name": "Bloggs",
+      "email": "joebloggs@example.com",
+      "password": "password9",
+      "user_type": "Admin",
+      "id": 9
+    },
+    {
+      "username": "maryjones789",
+      "first_name": "Mary",
+      "last_name": "Jones",
+      "email": "maryjones@example.com",
+      "password": "password10",
+      "user_type": "Driver",
+      "id": 10
+    }
+  ]
+  
+

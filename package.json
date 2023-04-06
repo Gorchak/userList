@@ -1,0 +1,19 @@
+{
+    "name": "angularjs-user-management",
+    "version": "1.0.0",
+    "description": "Emulated server-side user management API using AngularJS",
+    "main": "index.js",
+    "scripts": {
+        "start": "http-server -p 8000",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Petro Horchak",
+    "license": "MIT",
+    "dependencies": {
+        "angular": "^1.8.2",
+        "angular-local-storage": "^0.7.1",
+        "angular-route": "^1.8.2",
+        "http-server": "^0.12.3",
+        "ng-dialog": "^1.4.0"
+    }
+}
