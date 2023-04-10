@@ -1,5 +1,5 @@
 # userList
-test task with uting AngularJS
+test task with using AngularJS
 
 
 To run app:
