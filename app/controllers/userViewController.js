@@ -38,42 +38,50 @@ angular
         $scope.isFormValid = true;
 
         if ($scope.isNewUser) {
-          UserService.createUser(user)
-            .then(function (success) {
-              ngDialog.close();
-              $rootScope.$broadcast("tableUpdated");
-              $rootScope.$broadcast("updateSuccessfullyMessage", {
-                successfullyMessage: success.message,
-              });
-            })
-            .catch(function (error) {
-              console.log(error);
-              ngDialog.close();
-              $timeout(function () {
-                $location
-                  .path("/error")
-                  .search({ error: error.message, status: error.status });
-              });
-            });
+          $scope.createUser(user);
         } else {
-          UserService.updateUser(user)
-            .then(function (success) {
-              ngDialog.close();
-              $rootScope.$broadcast("tableUpdated");
-              $rootScope.$broadcast("updateSuccessfullyMessage", {
-                successfullyMessage: success.message,
-              });
-            })
-            .catch(function (error) {
-              ngDialog.close();
-              console.log(error);
-              $timeout(function () {
-                $location
-                  .path("/error")
-                  .search({ error: error.message, status: error.status });
-              });
-            });
+          $scope.updateUser(user);
         }
+      };
+
+      $scope.createUser = function (user) {
+        UserService.createUser(user)
+          .then(function (success) {
+            ngDialog.close();
+            $rootScope.$broadcast("tableUpdated");
+            $rootScope.$broadcast("updateSuccessfullyMessage", {
+              successfullyMessage: success.message,
+            });
+          })
+          .catch(function (error) {
+            console.log(error);
+            ngDialog.close();
+            $timeout(function () {
+              $location
+                .path("/error")
+                .search({ error: error.message, status: error.status });
+            });
+          });
+      };
+
+      $scope.updateUser = function (user) {
+        UserService.updateUser(user)
+          .then(function (success) {
+            ngDialog.close();
+            $rootScope.$broadcast("tableUpdated");
+            $rootScope.$broadcast("updateSuccessfullyMessage", {
+              successfullyMessage: success.message,
+            });
+          })
+          .catch(function (error) {
+            ngDialog.close();
+            console.log(error);
+            $timeout(function () {
+              $location
+                .path("/error")
+                .search({ error: error.message, status: error.status });
+            });
+          });
       };
 
       $scope.deleteUser = function (id) {

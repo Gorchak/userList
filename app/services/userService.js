@@ -28,7 +28,7 @@ angular.module("myApp").factory("UserService", function ($http) {
   function createUser(user) {
     return getUsers().then(function (users) {
       // Check if a user with the same username already exists
-      var existingUser = users.find(function (u) {
+      let existingUser = users.find(function (u) {
         return u.username === user.username;
       });
       if (existingUser) {
@@ -50,13 +50,25 @@ angular.module("myApp").factory("UserService", function ($http) {
   }
 
   function updateUser(user) {
-    var users = JSON.parse(localStorage.getItem("userList"));
+    let users = JSON.parse(localStorage.getItem("userList"));
 
-    var index = users.findIndex(function (u) {
+    let index = users.findIndex(function (u) {
       return u.id === user.id;
     });
 
     if (index >= 0) {
+      // is username was changed
+      if (users[index].username !== user.username) {
+        let existingUser = users.find(function (u) {
+          return u.username === user.username;
+        });
+        if (existingUser) {
+          return Promise.reject({
+            status: 403,
+            message: "User with this username field already exists",
+          });
+        }
+      }
       users[index] = user;
       localStorage.setItem("userList", JSON.stringify(users));
       return Promise.resolve({
@@ -68,9 +80,9 @@ angular.module("myApp").factory("UserService", function ($http) {
   }
 
   function deleteUser(userId) {
-    var users = JSON.parse(localStorage.getItem("userList"));
+    let users = JSON.parse(localStorage.getItem("userList"));
 
-    var index = users.findIndex(function (user) {
+    let index = users.findIndex(function (user) {
       return user.id === parseInt(userId);
     });
     if (index >= 0) {

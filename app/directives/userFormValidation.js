@@ -7,7 +7,7 @@ angular.module("myApp").directive("formValidation", function ($timeout) {
       userForm: "="
     },
     link: function (scope, element, attrs) {
-      var form = element[0];
+      let form = element[0];
       form.addEventListener("input", function (event) {
         $timeout(function() {
           scope.errors = {};
@@ -73,12 +73,12 @@ angular.module("myApp").directive("formValidation", function ($timeout) {
           }
   
           function validateEmail(email) {
-            var emailPattern = /^\S+@\S+\.\S+$/;
+            let emailPattern = /^\S+@\S+\.\S+$/;
             return emailPattern.test(email);
           }
   
           function validatePassword(password) {
-            var passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+            let passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
             return passwordPattern.test(password);
           }
   
