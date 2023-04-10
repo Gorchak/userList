@@ -1,11 +1,11 @@
-<div class="error-page-container" ng-if="status && message">
-    <div class="error-page-status">
+<div class="container--error-page" ng-if="status && message">
+    <div class="status--error-page">
         {{status}}
     </div>
-    <div class="error-page-message">
+    <div class="message--error-page">
         {{message}}
     </div>
-    <div class="error-page-button">
-        <button class="default-btn" ng-click="goToHomePage()">Go to home page</button>
+    <div class="button--error-page">
+        <button class="btn--default" ng-click="goToHomePage()">Go to home page</button>
     </div>
 </div>

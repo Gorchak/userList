@@ -5,54 +5,54 @@
 <div class="form-container">
   <form name="userForm" novalidate form-validation user-form="userForm" errors="errors" is-form-valid="isFormValid">
     <div class="form-group--user">
-      <label for="username">Username*</label>
+      <label class="form-group__label" for="username">Username*</label>
       <input
         type="text"
-        class="form-control"
+        class="form-control form-group__input"
         name="username"
         ng-model="user.username"
         required
       />
 
-      <div ng-show="errors.username" class="alert">{{ errors.username }}</div>
+      <div ng-show="errors.username" class="alert--user-form">{{ errors.username }}</div>
     </div>
     <div class="form-group--user">
-      <label for="firstName">First Name*</label>
+      <label class="form-group__label" for="firstName">First Name*</label>
       <input
         type="text"
-        class="form-control"
+        class="form-control form-group__input"
         name="firstName"
         ng-model="user.first_name"
         required
       />
-      <div ng-show="errors.firstName" class="alert">{{errors.firstName}}</div>
+      <div ng-show="errors.firstName" class="alert--user-form">{{errors.firstName}}</div>
     </div>
     <div class="form-group--user">
-      <label for="lastName">Last Name*</label>
+      <label class="form-group__label" for="lastName">Last Name*</label>
       <input
         type="text"
-        class="form-control"
+        class="form-control form-group__input"
         name="lastName"
         ng-model="user.last_name"
         required
       />
-      <div ng-show="errors.lastName" class="alert">{{errors.lastName}}</div>
+      <div ng-show="errors.lastName" class="alert--user-form">{{errors.lastName}}</div>
     </div>
     <div class="form-group--user">
-      <label for="email">Email*</label>
+      <label class="form-group__label" for="email">Email*</label>
       <input
         type="email"
-        class="form-control"
+        class="form-control form-group__input"
         name="email"
         ng-model="user.email"
         required
       />
-      <div ng-show="errors.email && userForm.email.$touched" class="alert">{{errors.email}}</div>
+      <div ng-show="errors.email && userForm.email.$touched" class="alert--user-form">{{errors.email}}</div>
     </div>
     <div class="form-group--user">
-      <label for="userType">User Type*</label>
+      <label class="form-group__label" for="userType">User Type*</label>
       <select
-        class="form-control"
+        class="form-control form-group__select"
         name="userType"
         ng-model="user.user_type"
         required
@@ -60,46 +60,46 @@
         <option value="">Select user type</option>
         <option ng-repeat="type in userTypes" value="{{type}}">{{type}}</option>
       </select>
-      <div ng-show="errors.userType" class="alert">{{errors.userType}}</div>
+      <div ng-show="errors.userType" class="alert--user-form">{{errors.userType}}</div>
     </div>
     <div class="form-group--user">
-      <label for="password">Password*</label>
+      <label class="form-group__label" for="password">Password*</label>
       <input
         type="password"
-        class="form-control"
+        class="form-control form-group__input"
         name="password"
         ng-model="user.password"
         ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/"
         required
       />
-      <div ng-show="errors.password" class="alert">{{errors.password}}</div>
+      <div ng-show="errors.password" class="alert--user-form">{{errors.password}}</div>
     </div>
     <div class="form-group--user">
-      <label for="repeatPassword">Repeat password*:</label>
+      <label class="form-group__label" for="repeatPassword">Repeat password*:</label>
       <input
         type="password"
-        class="form-control"
+        class="form-control form-group__input"
         name="repeatPassword"
         ng-model="repeatedPassword"
         required
       />
-      <div ng-show="errors.repeatPassword" class="alert">{{errors.repeatPassword}}</div>
+      <div ng-show="errors.repeatPassword" class="alert--user-form">{{errors.repeatPassword}}</div>
     </div>
     <div
-      class="form-group--user user-form-buttons"
-      ng-class="{'user-form-buttons_center': isNewUser}"
+      class="form-group--user buttons--user-form"
+      ng-class="{'buttons--centered': isNewUser}"
     >
       <button
         ng-if="!isNewUser"
         type="button"
-        class="default-btn red-btn"
+        class="btn--default btn--red"
         ng-click="deleteUser(user.id)"
       >
         Delete
       </button>
       <button
         type="button"
-        class="default-btn blue-btn"
+        class="btn--default btn--blue"
         ng-click="saveUser(user)"
         ng-disabled="!isFormValid"
       >
